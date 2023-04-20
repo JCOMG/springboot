@@ -1,0 +1,30 @@
+package com.ispan.springbootdemoteacher.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.ispan.springbootdemo.controller.model.Messages;
+import com.ispan.springbootdemo.controller.model.Test1;
+import com.ispan.springbootdemo.service.MessageService;
+import com.ispan.springbootdemo.service.Test1Service;
+
+@Controller
+public class Test1Controller {
+
+	private Test1Service t1Service;
+	
+	
+	public Test1Controller() {
+
+		@GetMapping("/message/test1")
+		public String addTest1(Model model) {
+			
+			model.addAttribute("test1", new Test1());//new Messages是空的物件
+			
+			
+			return "message/Test1-1";
+		}
+	}
+
+}

@@ -1,0 +1,14 @@
+
+原生的form表單只會送GET、POST表單，但這裡用的是Spring的form表單
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>修改頁面</title>
+</head>
+<body>
+
+</body>
+</html>

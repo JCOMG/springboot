@@ -1,0 +1,73 @@
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<jstl:set var="contextRoot" value="${pageContext.request.contextPath}" />
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Show Message Page</title>
+</head>
+<body>
+<jsp:include page="../layout/navbar.jsp"></jsp:include>
+
+<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-8">
+              <h1>Show Message Page</h1>
+              
+              <jstl:forEach var="message" items="${page.content}">
+              <div class="card">
+					<div class="card-header">新增時間: <span><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss EEEE" value="${message.added}"/></span></div>
+					<div class="card-body">
+						${message.text}
+					</div>
+				</div>
+			</jstl:forEach>
+			<br />
+			<jstl:forEach var="pageNumber" begin="1" end="${page.totalPages}">
+			  <a href="${contextRoot}/messages?p=${pageNumber}">${pageNumber}</a>
+			</jstl:forEach>
+ </div>
+ </div>
+ </div>
+</body>
+</html>

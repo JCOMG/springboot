@@ -1,0 +1,40 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="jstl" %>
+
+<jstl:set var="contextRoot" value="${pageContext.request.contextPath}" />
+  <!DOCTYPE html>
+  <html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+  </head>
+
+  <body>
+    <jsp:include page="../layout/navbar.jsp"></jsp:include>
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <h1>Add Message Page</h1>
+          <div class="card">
+            <div class="card-header">
+              Featured
+            </div>
+            <div class="card-body">
+            接收controller所傳的model物件就是getText，它叫做messages，使用者打完字，儲存用setText(path="text")存值，再來到action用post傳給controller
+              <form:form class="form-control" modelAttribute="messages" method="post" action="${contextRoot}/messages/post">
+                <form:textarea path="text" class="form-control" id="" cols="30" rows="10"></form:textarea>
+                 <button type="submit"  class="btn btn-primary">送出</button>
+              </form:form>
+             
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+
+  </html>

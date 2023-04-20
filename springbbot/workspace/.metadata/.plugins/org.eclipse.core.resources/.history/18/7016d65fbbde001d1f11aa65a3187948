@@ -1,0 +1,9 @@
+package com.ispan.springbootdemo.controller;
+
+public class Test1Controller {
+
+	public Test1Controller() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

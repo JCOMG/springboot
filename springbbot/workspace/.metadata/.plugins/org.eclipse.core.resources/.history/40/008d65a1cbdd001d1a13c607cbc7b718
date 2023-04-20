@@ -1,0 +1,33 @@
+package com.ispan.springbootdemo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.ispan.springbootdemo.controller.model.Customer;
+import com.ispan.springbootdemo.controller.model.CustomerRepository;
+
+
+@Controller
+public class CustomerController {
+	@Autowired
+	private CustomerRepository customerRepository;
+	
+	@ResponseBody
+	@PostMapping("/customer/add")
+	public Customer addOneCustomer() {
+		Customer cus1 = new Customer();
+		cus1.setName("館長");
+		cus1.setLevel(5);
+		Customer resCustomer = customerRepository.save(cus1);
+		return resCustomer;
+	}
+	@ResponseBody
+	@PostMapping("/customer/add2")
+	public Customer addOneCustomer2(@RequestBody Customer cus) {
+		Customer resCustomer = customerRepository.save(cus);
+		return resCustomer;
+	}
+}

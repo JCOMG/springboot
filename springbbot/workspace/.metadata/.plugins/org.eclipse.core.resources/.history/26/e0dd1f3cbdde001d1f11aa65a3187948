@@ -1,0 +1,15 @@
+package com.ispan.springbootdemo.service;
+
+import com.ispan.springbootdemo.controller.model.Messages;
+
+public class Test1Service {
+
+	public void addTest1(Test1 test) {
+		msgRepository.save(test);//新增單筆的進入資料庫
+		
+		
+		
+
+	}
+
+}

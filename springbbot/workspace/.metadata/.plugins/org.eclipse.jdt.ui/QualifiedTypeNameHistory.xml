@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+    <fullyQualifiedTypeName name="com.ispan.springbootdemo.controller.model.Messages"/>
+    <fullyQualifiedTypeName name="com.ispan.springbootdemo.service.MessageService"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ModelAttribute"/>
+    <fullyQualifiedTypeName name="org.springframework.data.domain.Page"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PutMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonFormat"/>
+    <fullyQualifiedTypeName name="com.ispan.springbootdemo.controller.model.Test1Repository"/>
+    <fullyQualifiedTypeName name="com.ispan.springbootdemo.controller.model.Test1"/>
+    <fullyQualifiedTypeName name="com.ispan.springbootdemo.service.Test1Service"/>
+    <fullyQualifiedTypeName name="com.ispan.springbootdemoteacher.model.Test1Repository"/>
+    <fullyQualifiedTypeName name="com.ispan.springbootdemoteacher.service.Test1Service"/>
+    <fullyQualifiedTypeName name="com.ispan.springbootdemoteacher.model.Test1"/>
+</qualifiedTypeNameHistroy>

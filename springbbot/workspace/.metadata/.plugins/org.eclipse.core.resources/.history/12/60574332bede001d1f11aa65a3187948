@@ -1,0 +1,31 @@
+package com.ispan.springbootdemo.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.ispan.springbootdemo.controller.model.Messages;
+import com.ispan.springbootdemo.controller.model.Test1;
+import com.ispan.springbootdemo.service.MessageService;
+
+@Controller
+public class Test1Controller {
+
+	private Test1Service t1Service;
+	
+	
+	public Test1Controller() {
+
+		@GetMapping("/message/test1")
+		public String addTest1(Model model) {
+			
+			model.addAttribute("messages", new Messages());//new Messages是空的物件
+			
+			Messages latest = mService.getLatest();
+			model.addAttribute("latest", latest);	
+			
+			return "message/Test1-1";
+		}
+	}
+
+}

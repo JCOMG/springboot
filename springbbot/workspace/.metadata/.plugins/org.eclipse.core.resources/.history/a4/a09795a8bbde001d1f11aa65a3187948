@@ -1,0 +1,9 @@
+package com.ispan.springbootdemo.service;
+
+public class Test1Service {
+
+	public Test1Service() {
+		// TODO Auto-generated constructor stub
+	}
+
+}

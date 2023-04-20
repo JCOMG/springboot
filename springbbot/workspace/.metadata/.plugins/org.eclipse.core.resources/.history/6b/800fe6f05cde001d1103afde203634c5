@@ -1,0 +1,33 @@
+package com.ispan.springbootdemo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.ispan.springbootdemo.controller.model.Messages;
+import com.ispan.springbootdemo.service.MessageService;
+
+@Controller
+public class MessageController {
+
+	@Autowired
+	private MessageService mService;
+	
+	@GetMapping("/message/add")
+	public String addMessage(Model model) {
+		
+		model.addAttribute("messages", new Messages());//new Messages是空的物件
+		
+		return "message/addMessagePage";
+	}
+	
+	@PostMapping("/messages/post")
+	public String postMessage(@ModelAttribute("messages") Messages msg) {
+		mService.addMessage(msg);
+		return "message/addMessagePage";
+	}
+	
+}

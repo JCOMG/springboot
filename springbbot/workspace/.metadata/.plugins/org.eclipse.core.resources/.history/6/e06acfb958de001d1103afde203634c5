@@ -1,0 +1,22 @@
+package com.ispan.springbootdemo.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.ispan.springbootdemo.controller.model.Messages;
+
+@Controller
+public class MessageController {
+
+	
+	@GetMapping("/message/add")
+	public String addMessage(Model model) {
+		
+		model.addAttribute("messages", new Messages());
+		
+		return "message/addMessagePage";
+	}
+	
+	
+}

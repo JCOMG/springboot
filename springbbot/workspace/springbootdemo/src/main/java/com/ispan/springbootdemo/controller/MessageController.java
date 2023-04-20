@@ -1,0 +1,102 @@
+package com.ispan.springbootdemo.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.ispan.springbootdemo.controller.model.Messages;
+import com.ispan.springbootdemo.service.MessageService;
+
+@Controller
+public class MessageController {
+
+	@Autowired
+	private MessageService mService;
+	
+	@GetMapping("/message/add")
+	public String addMessage(Model model) {
+		
+		model.addAttribute("messages", new Messages());//new Messages是空的物件
+		
+		Messages latest = mService.getLatest();
+		model.addAttribute("latest", latest);
+		
+		return "message/addMessagePage";
+	}
+	
+	@PostMapping("/messages/post")
+	public String postMessage(@ModelAttribute("messages") Messages msg,Model model) {
+		//@ModelAttribute("messages") Messages msg 這裡就是要接收jsp裡所傳來的資料，也就是setText裡面的東西
+		mService.addMessage(msg);//透過這個方法，setText的資料進資料庫了，資料送，畫面不可能還會存在剛剛寫完的畫面吧?
+		
+		model.addAttribute("messages", new Messages());//所以資料送到資料庫之後，要用新的畫面取代原本有寫東西的畫面，這樣空白的畫面就可以取代原本有值的畫面
+		
+		Messages latest = mService.getLatest();//同時送出資料後，新的畫面會顯示出剛剛所新增的資料
+		model.addAttribute("latest", latest);
+		
+		return "message/addMessagePage";
+	}
+	
+	@GetMapping("/messages")
+	public String goShowMessages(@RequestParam(name="p",defaultValue = "1") Integer pageNumber,Model model) {
+								//接到參數，這裡指的就是p = page，defaultValue = "1"預設是第一頁，寫2就是第2頁
+		Page<Messages> page = mService.findByPage(pageNumber);
+		
+		model.addAttribute("page", page);
+		
+		return "message/showMessages";
+	}
+	
+	
+	//更新的部分--接收到我們要的id欄位的值
+	@GetMapping("/messages/edit")
+	public String editPage(@RequestParam("id") Integer id, Model model) {
+		Messages msg = mService.findMessagesById(id);
+		model.addAttribute("messages",msg);
+		return "message/editMessagePage";
+	}
+	
+	//更新的部分--從editMessagePage.jsp收到請求，在用redirect轉到/messages
+	@PutMapping("/messages/edit")
+	public String putEditedMessage(@ModelAttribute("messages") Messages msg) {
+		mService.updateById(msg.getId(), msg.getText());//get我們要更改的id跟內容
+		return "redirect:/messages";
+	} 
+	
+//	刪除的部分
+	@DeleteMapping("/messages/delete")
+	public String putEditedMessage(@RequestParam Integer id) {
+		mService.deleteMessagesById(id);
+		return "redirect:/messages";
+	}
+	
+	//回傳前3筆資料
+	@ResponseBody
+	@PostMapping("/api/messages/post")
+	public Page<Messages> postMessageApi(@RequestBody Messages msg){
+		//	@RequestBody是將Java物件轉成JSON
+		mService.addMessage(msg);//新增
+		
+		Page<Messages> page = mService.findByPage(1);//第1頁，回傳前3筆資料
+		
+		return page;
+	}
+	
+	
+	//AJAX用
+	@GetMapping("/messages/ajax")
+	public String ajaxPage() {
+		return "message/ajaxMessage";
+	}
+	
+	
+}
